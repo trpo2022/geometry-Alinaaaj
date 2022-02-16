@@ -13,13 +13,13 @@ int main()
     int proverka = 0; //переменная для проверки
     int j = 0; //итератор для передвижения по массиву buf
     fstream fs; // поток ввода вывода
-    fs.open(filename, ios::in); //открываем файл
+    fs.open(filename, ios::in); //открываем файл (имя файла и поток вывода)
         if (fs.is_open())
         {
             fs.seekg(0, ios::end);// измеряем
             length = fs.tellg();    // файл
-            buf = new char[1 + length]; //выделяем место
-            buf[length] = 0;
+            buf = new char[1 + length]; //выделяем место, динамическая память 
+            buf[length] = 0; // последний элемент равен 0
             for (int i = length; i > 0; i--) //i отвечает за передвижение по файлу, j по массиву
             {   
                 fs.seekg(-i, ios::end);
@@ -28,7 +28,7 @@ int main()
                 j++;
             }
 //            cout << endl;
-            fs.close();
+            fs.close(); // закрываем файл
         }
 
         else // ошибка открытия файла
