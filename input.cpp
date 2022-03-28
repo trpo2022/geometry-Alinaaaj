@@ -13,30 +13,26 @@ struct Circle {
     double r; //радиус
 };
 
-struct Triangle {
+/*struct Triangle {
     double x1;
     double x2;
     double x3;
     double y1;
     double y2;
     double y3;
-};
+};*/
 
 int main()
 {
     string file_in, word_in;
     string buffer;
-    string s;
-    string xnum;
-    string ynum;
-    string ptr;
-    string bstr = "";
+    string digitSymbol = "";
     char schet[8];
     Circle o;
-    Triangle tri;
+    // Triangle tri;
     int check = 0;
     string circle = "circle";
-    string triangle = "triangle";
+    // string triangle = "triangle";
 
     cout << "Input file name: ";
     cin >> file_in;
@@ -71,23 +67,24 @@ int main()
                 if (check) {
                     if (isdigit(buffer[i]) || buffer[i] == '.'
                         || buffer[i] == '-') //проверка на число
-                        bstr += buffer[i];
+                        digitSymbol += buffer[i];
                     if (isspace(buffer[i])
                         || buffer[i] == ')') //если встречено пробел или )
                     {
-                        d[c++] = atof(bstr.c_str());
-                        bstr.clear();
+                        d[c++] = atof(digitSymbol.c_str());
+                        digitSymbol.clear();
                     }
                 }
             }
             o.x = d[0];
             o.y = d[1];
             o.r = d[2];
+            cout << endl << "Circle found:" << endl;
             cout << "X = " << o.x << endl;
             cout << "Y = " << o.y << endl;
             cout << "R = " << o.r << endl;
-        }
-
+        } else
+            clog << "Unknown figure!" << endl;
         /*double t[13] = {0};
         if (buffer.find(triangle , 0)!=-1)
         {
@@ -98,13 +95,13 @@ int main()
                     check = 1;
                 if (check)
                 {
-                    if (isdigit(buffer[i]) || buffer[i] == '.' || buffer[i] ==
-        '-')                         //проверка на число bstr += buffer[i]; if
-        (isspace(buffer[i]) || buffer[i] == ')')                         //если
-        встречено пробел или )
+                    if (isdigit(buffer[i]) || buffer[i] == '.' || buffer[i]
+        =='-')                         //проверка на число digitSymbol +=
+        buffer[i]; if (isspace(buffer[i]) || buffer[i] == ')') //если встречено
+        пробел или )
                     {
-                        d[i%13] = atof(bstr.c_str());
-                        bstr.clear();
+                        d[i%13] = atof(digitSymbol.c_str());
+                        digitSymbol.clear();
                     }
                 }
 
