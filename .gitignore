@@ -1,2 +1,4 @@
-geo
+*.a
+*.d
 *.o
+bin/geo
