@@ -1,3 +1,6 @@
 ciRcle (0 0, 1.5)
+ciRcle (0 1, 1.5)
 TRIANGLE ((-3 -2, -1 0, -3 2, -3 -2))
 poLygon ((-3 -2, -1 0, -3 2, -3 -2))
+ciRcle (1 0, 1.5)
+ciRcle (2 0, 1.5)

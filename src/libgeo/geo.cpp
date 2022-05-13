@@ -100,6 +100,8 @@ Triangle FindTriangle(string buffer)
 }
 void geometryWork(string file_in)
 {
+    double circleMass[10][3] = {0};
+    int schet = -1;
     fstream in(file_in, ios::in);
     if (!in.good()) //проверка на открытие файла
     {
@@ -128,6 +130,12 @@ void geometryWork(string file_in)
 
         if (buffer.find(circle, 0) != (size_t)-1) {
             Circle o = FindCircle(buffer);
+            schet++;
+            if (schet > 0) {
+                circleMass[schet][0] = o.x;
+                circleMass[schet][1] = o.y;
+                circleMass[schet][2] = o.r;
+            }
             cout << "******************************" << endl;
             cout << "Circle found:" << endl;
             cout << "Area = " << o.square << endl;
@@ -145,4 +153,19 @@ void geometryWork(string file_in)
         buffer.clear();
     }
     in.close();
+    if (schet > 0) {
+        double a;
+        for (int i = 0; i < schet; i++) {
+            for (int j = 0; j < schet; j++) {
+                a = sqrt(
+                        pow(circleMass[j + 1][0] - circleMass[i][0], 2)
+                        + pow(circleMass[j + 1][1] - circleMass[i][1], 2));
+                if (a == 0)
+                    continue;
+                if (a <= (circleMass[j + 1][2] + circleMass[i][2]))
+                    cout << "Circle " << (i + 1) << " and " << (j + 2)
+                         << " intersects" << endl;
+            }
+        }
+    }
 }

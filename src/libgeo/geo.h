@@ -12,7 +12,7 @@ using namespace std;
 struct Circle {
     double x;
     double y;
-    double r;  //радиус
+    double r; //радиус
     double square;
     double perimeter;
 };
