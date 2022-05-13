@@ -12,6 +12,7 @@ SRC_DIR = src
 
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
+TEST_PATH = $(OBJ_DIR)/
 
 SRC_EXT = cpp
 
@@ -37,8 +38,23 @@ $(LIB_PATH): $(LIB_OBJECTS)
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
+.PHONY: test
+test: bin/test
+	bin/test
+
+bin/test: $(TEST_PATH)test/test.o $(TEST_PATH)test/main.o ./obj/src/libgeo/geo.o
+	$(CC) -I thirdparty/ -o $@ $^ -lm
+	
+$(TEST_PATH)test/main.o: test/main.cpp
+	$(CC) -c -I thirdparty/ -o $@ $<
+
+$(TEST_PATH)test/test.o : test/test.cpp
+	$(CC) -c -I thirdparty/ -o $@ $^
+
+
 .PHONY: clean
 clean:
 	$(RM) $(APP_PATH) $(LIB_PATH)
 	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
 	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
+	rm -rf bin/test

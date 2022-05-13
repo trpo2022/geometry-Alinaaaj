@@ -27,3 +27,5 @@ struct Triangle {
 };
 
 void geometryWork(string file_in);
+Circle FindCircle(string buffer);
+Triangle FindTriangle(string buffer);
