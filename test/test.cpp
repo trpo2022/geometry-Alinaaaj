@@ -26,7 +26,7 @@ CTEST(arithmetic_suite, simple_sum)
     ASSERT_DBL_NEAR(r, result.r);
 }
 
-/*CTEST(triangle_suite, simple_triangle)
+CTEST(triangle_suite, simple_triangle)
 {
     // Given
     string buffer = "triangle ((-3 -2, -1 0, -3 2, -3 -2))";
@@ -52,4 +52,4 @@ CTEST(arithmetic_suite, simple_sum)
     ASSERT_DBL_NEAR(coord4[1], result.coord4[1]);
     ASSERT_DBL_NEAR(pTriangle, result.pTriangle);
     ASSERT_DBL_NEAR(sTriangle, result.sTriangle);
-}*/
+}
